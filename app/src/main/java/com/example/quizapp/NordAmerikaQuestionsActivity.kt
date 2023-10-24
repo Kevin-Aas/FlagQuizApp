@@ -20,12 +20,14 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private var mCorrectAnswers: Int = 0
     private var mUserName: String? = null
 
+    // Denne blit brukt for navnene som blir vist til bruker:
     val nordAmerika = listOf<String>("Antigua og Barbuda", "Bahamas", "Barbados", "Belize",
             "Canada", "Costa Rica", "Cuba", "Dominica", "Den dominikanske republikk",
             "El Salvador", "Grenada", "Guatemala", "Haiti", "Honduras", "Jamaica", "Mexico",
             "Nicaragua", "Panama", "St. Kitts og Nevis", "St. Lucia", "St. Vincent og Grenadinene",
             "Trinidad og Tobago", "USA")
 
+    // Denne blir brukt for filnavnene til bildene:
     var nordAmerika_draw = mutableListOf<String>("Antigua", "Bahamas", "Barbados", "Belize",
             "Canada", "Costa_rica", "Cuba", "Dominica", "Dominican_republic",
             "El_salvador", "Grenada", "Guatemala", "Haiti", "Honduras", "Jamaica", "Mexico",
@@ -237,7 +239,7 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
             var alternativ = ArrayList<String>()
             while (alternativ.size < 4){
-                val randomAltIndex = (0..flaggNavnList.size-1).shuffled().last()
+                val randomAltIndex = (0 until flaggNavnList.size-1).shuffled().last()
                 val randomAltFlaggNavn = flaggNavnList[randomAltIndex]
                 if (randomAltFlaggNavn !in alternativ){
                     alternativ.add(randomAltFlaggNavn)
