@@ -105,6 +105,7 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     override fun onClick(p0: View?) {
+        // Sjekker hvilken id View-et har:
         when(p0?.id){
             R.id.tv_option_one -> {
                 selectedOptionView(tv_option_one, 1)
