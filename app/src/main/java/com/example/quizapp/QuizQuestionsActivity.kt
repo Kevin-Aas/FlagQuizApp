@@ -55,7 +55,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         defaultOptionsView()
         defaultSubmitView()
 
-        if(mCurrentPosition == mQuestionsList!!.size){
+        if(mCurrentPosition == mQuestionsList!!.size) {
             btn_submit.text = "Ferdig"
         }else{
             btn_submit.text = "Neste spørsmål"
@@ -74,14 +74,14 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv_option_four.text = currentQuestion.optionFour
     }
 
-    private fun defaultOptionsView(){
+    private fun defaultOptionsView() {
         val options = ArrayList<TextView>()
         options.add(0,tv_option_one)
         options.add(1,tv_option_two)
         options.add(2,tv_option_three)
         options.add(3,tv_option_four)
 
-        for (option in options){
+        for (option in options) {
             option.setTextColor(Color.parseColor("#7A8089"))
             option.typeface = Typeface.DEFAULT
             option.background = ContextCompat.getDrawable(
@@ -92,7 +92,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun defaultSubmitView(){
+    private fun defaultSubmitView() {
         btn_submit.setTextColor(Color.parseColor("#E8E8E8"))
         btn_submit.typeface = Typeface.DEFAULT
         btn_submit.background = ContextCompat.getDrawable(this, R.drawable.default_submit_border_bg)
@@ -123,7 +123,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun answerView(answer: Int, drawableView: Int){
+    private fun answerView(answer: Int, drawableView: Int) {
         when (answer){
             1 -> tv_option_one.background = ContextCompat.getDrawable(this, drawableView)
             2 -> tv_option_two.background = ContextCompat.getDrawable(this, drawableView)
@@ -151,7 +151,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
     private fun submit(){
         var mp: MediaPlayer? = null
 
-        if (mSelectedOptionPosition == 0){
+        if (mSelectedOptionPosition == 0) {
             if (attempts == 0){
                 mp?.stop()
                 mp = MediaPlayer.create(this@QuizQuestionsActivity, R.raw.error)
@@ -181,7 +181,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 //MediaPlayer.create(this@QuizQuestionsActivity, R.raw.augh)
                 )
             if (attempts < 1){
-                if(question!!.correctAnswer != mSelectedOptionPosition){
+                if(question!!.correctAnswer != mSelectedOptionPosition) {
                     answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
                     mp?.stop()
                     mp = wrong_music.shuffled().last()
@@ -190,7 +190,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     val super_idol = MediaPlayer.create(this@QuizQuestionsActivity, R.raw.super_idol)
                     if (tv_option_one.text == "Kina" && mSelectedOptionPosition == 1) {
                         super_idol.start()
-                    }else if (tv_option_two.text == "Kina" && mSelectedOptionPosition == 2){
+                    }else if (tv_option_two.text == "Kina" && mSelectedOptionPosition == 2) {
                         super_idol.start()
                     }else if (tv_option_three.text == "Kina" && mSelectedOptionPosition == 3){
                         super_idol.start()
@@ -221,7 +221,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         val flaggNavnList = ArrayList<String>()
         val drawNameList = ArrayList<String>()
         var antall = 0
-        when (intent.getStringExtra(Constants.DIFF)){
+        when (intent.getStringExtra(Constants.DIFF)) {
             "easy" -> antall = 20
             "medium" -> antall = 50
             "hard" -> antall = 197
@@ -238,7 +238,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                     drawNameSplit.remove("flag")
                     drawNameSplit.remove("of")
                     // Gjør første bokstavene om til store bokstaver:
-                    for (i in (0 until drawNameSplit.size)){
+                    for (i in (0 until drawNameSplit.size)) {
                         if (drawNameSplit[i] !in listOf<String>("of", "and", "d", "the")){
                             drawNameSplit[i] = drawNameSplit[i].capitalize()
                         }
@@ -269,7 +269,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         var id = 1
         val brukteFlaggNavn = ArrayList<String>()
-        for (i in (0 until flaggNavnList.size)){
+        for (i in (0 until flaggNavnList.size)) {
             var gjeldeneFlaggIndex: Int = 0
             var gjeldeneFlaggNavn: String = ""
 
@@ -277,7 +277,7 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             while (cond){
                 val nyFlaggIndex = (0..flaggNavnList.size-1).shuffled().last()
                 val nyFlaggNavn = flaggNavnList[nyFlaggIndex]
-                if (nyFlaggNavn !in brukteFlaggNavn){
+                if (nyFlaggNavn !in brukteFlaggNavn) {
                     gjeldeneFlaggIndex = nyFlaggIndex
                     gjeldeneFlaggNavn = nyFlaggNavn
                     brukteFlaggNavn.add(gjeldeneFlaggNavn)
@@ -298,9 +298,9 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             }
 
             var riktigSvarPos: Int = 0
-            if (gjeldeneFlaggNavn in alternativ){
+            if (gjeldeneFlaggNavn in alternativ) {
                 riktigSvarPos = alternativ.indexOf(gjeldeneFlaggNavn)
-            }else{
+            } else {
                 riktigSvarPos = Random.nextInt(0, 4)
                 alternativ[riktigSvarPos] = gjeldeneFlaggNavn
             }
@@ -316,12 +316,10 @@ class QuizQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 riktigSvarPos+1
             )
 
-
-            if (questionsList.size < antall){
+            if (questionsList.size < antall) {
                 questionsList.add(que)
-            }else{
+            } else {
                 break
-
             }
 
             id += 1

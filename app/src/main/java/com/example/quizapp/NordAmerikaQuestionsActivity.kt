@@ -61,7 +61,7 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         defaultOptionsView()
         defaultSubmitView()
 
-        if(mCurrentPosition == mQuestionsList!!.size){
+        if(mCurrentPosition == mQuestionsList!!.size) {
             btn_submit.text = "Ferdig"
         }else{
             btn_submit.text = "Neste spørsmål"
@@ -80,7 +80,7 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         tv_option_four.text = currentQuestion.optionFour
     }
 
-    private fun defaultOptionsView(){
+    private fun defaultOptionsView() {
         val options = ArrayList<TextView>()
         options.add(0,tv_option_one)
         options.add(1,tv_option_two)
@@ -98,7 +98,7 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun defaultSubmitView(){
+    private fun defaultSubmitView() {
         btn_submit.setTextColor(Color.parseColor("#E8E8E8"))
         btn_submit.typeface = Typeface.DEFAULT
         btn_submit.background = ContextCompat.getDrawable(this, R.drawable.default_submit_border_bg)
@@ -129,7 +129,7 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun answerView(answer: Int, drawableView: Int){
+    private fun answerView(answer: Int, drawableView: Int) {
         when (answer){
             1 -> tv_option_one.background = ContextCompat.getDrawable(this, drawableView)
             2 -> tv_option_two.background = ContextCompat.getDrawable(this, drawableView)
@@ -138,7 +138,7 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
         }
     }
 
-    private fun selectedOptionView(tv: TextView, selectedOptionNum: Int){
+    private fun selectedOptionView(tv: TextView, selectedOptionNum: Int) {
         mSelectedOptionPosition = selectedOptionNum
 
         if (attempts < 1){
@@ -155,10 +155,10 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     var attempts: Int = 0
     private fun submit(){
-        if (mSelectedOptionPosition == 0){
+        if (mSelectedOptionPosition == 0) {
             if (attempts == 0){
                 MediaPlayer.create(this@NordAmerikaQuestionsActivity, R.raw.error).start()
-            }else{
+            } else {
                 mCurrentPosition += 1
                 attempts = 0
 
@@ -175,18 +175,18 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 }
             }
 
-        }else {
+        } else {
             val question = mQuestionsList?.get(mCurrentPosition - 1)
             val wrong_music = listOf<MediaPlayer>(
                 MediaPlayer.create(this@NordAmerikaQuestionsActivity, R.raw.thud),
                 //MediaPlayer.create(this@NordAmerikaQuestionsActivity, R.raw.bruh),
                 //MediaPlayer.create(this@NordAmerikaQuestionsActivity, R.raw.augh)
             )
-            if (attempts < 1){
-                if(question!!.correctAnswer != mSelectedOptionPosition){
+            if (attempts < 1) {
+                if(question!!.correctAnswer != mSelectedOptionPosition) {
                     answerView(mSelectedOptionPosition, R.drawable.wrong_option_border_bg)
                     wrong_music.shuffled().last().start()
-                }else{
+                } else {
                     MediaPlayer.create(this@NordAmerikaQuestionsActivity, R.raw.correct).start()
                     mCorrectAnswers += 1
                 }
@@ -202,14 +202,14 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
-    private fun getQuestions(): ArrayList<Question>{
+    private fun getQuestions(): ArrayList<Question> {
         val questionsList = ArrayList<Question>()
         val questionText = "Hvilket flag er dette?"
 
         val flaggNavnList = nordAmerika
         val drawNameList = nordAmerika_draw
         var antall = 0
-        when (intent.getStringExtra(Constants.DIFF)){
+        when (intent.getStringExtra(Constants.DIFF)) {
             "easy" -> antall = 5
             "medium" -> antall = 12
             "hard" -> antall = 23
@@ -217,7 +217,7 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
 
         var id = 1
         val brukteFlaggNavn = ArrayList<String>()
-        for (i in (0 until flaggNavnList.size)){
+        for (i in (0 until flaggNavnList.size)) {
             var gjeldeneFlaggIndex: Int = 0
             var gjeldeneFlaggNavn: String = ""
 
@@ -239,18 +239,18 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             val bildeInt: Int = resources.getIdentifier(variableValue, "drawable", getPackageName())
 
             var alternativ = ArrayList<String>()
-            while (alternativ.size < 4){
+            while (alternativ.size < 4) {
                 val randomAltIndex = (0 until flaggNavnList.size-1).shuffled().last()
                 val randomAltFlaggNavn = flaggNavnList[randomAltIndex]
-                if (randomAltFlaggNavn !in alternativ){
+                if (randomAltFlaggNavn !in alternativ) {
                     alternativ.add(randomAltFlaggNavn)
                 }
             }
 
             var riktigSvarPos: Int = 0
-            if (gjeldeneFlaggNavn in alternativ){
+            if (gjeldeneFlaggNavn in alternativ) {
                 riktigSvarPos = alternativ.indexOf(gjeldeneFlaggNavn)
-            }else{
+            } else {
                 riktigSvarPos = Random.nextInt(0, 4)
                 alternativ[riktigSvarPos] = gjeldeneFlaggNavn
             }
@@ -266,9 +266,9 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
                 riktigSvarPos+1
             )
 
-            if (questionsList.size < antall){
+            if (questionsList.size < antall) {
                 questionsList.add(que)
-            }else{
+            } else {
                 break
             }
 
