@@ -224,10 +224,10 @@ class NordAmerikaQuestionsActivity : AppCompatActivity(), View.OnClickListener {
             // Plukker ut et flagg
             // passer på at det ikke er plukket ut tidligere
             var cond = true
-            while (cond){
+            while (cond) {
                 val nyFlaggIndex = (0 until flaggNavnList.size-1).shuffled().last()
                 val nyFlaggNavn = flaggNavnList[nyFlaggIndex]
-                if (nyFlaggNavn !in brukteFlaggNavn){
+                if (nyFlaggNavn !in brukteFlaggNavn) {
                     gjeldeneFlaggIndex = nyFlaggIndex
                     gjeldeneFlaggNavn = nyFlaggNavn
                     brukteFlaggNavn.add(gjeldeneFlaggNavn)
